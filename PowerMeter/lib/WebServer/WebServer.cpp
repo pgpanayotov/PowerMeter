@@ -37,6 +37,8 @@ void Web_RootPage( AsyncWebServerRequest *request )
                                       appData.getCurrent().c_str(), \
                                       appData.getPower().c_str(), \
                                       appData.getEnergy().c_str(), \
+                                      appData.getFrequency().c_str(), \
+                                      appData.getPf().c_str(), \
                                       appData.getSamplesOK().c_str(), \
                                       appData.getSamplesNOK().c_str(), \
                                       appData.getPZEMState().c_str() );
@@ -62,12 +64,14 @@ void WebServer::setup()
 
     server.onNotFound( Web_PageNotFound );
 
-    server.on("/trianglify.min.js", HTTP_GET, [](AsyncWebServerRequest *request) {
+    /* removing this since it seams to consume too much memory and breaks the webpage perhaps some pointer being overwritten...?
+      server.on("/trianglify.min.js", HTTP_GET, [](AsyncWebServerRequest *request) {
         AsyncWebServerResponse *response = request->beginResponse_P(200, "text/javascript",
-            trianglify_min_js_gz, sizeof(trianglify_min_js_gz));
+           trianglify_min_js_gz, sizeof(trianglify_min_js_gz));
         response->addHeader("Content-Encoding", "gzip");
         request->send(response);
     });
+    */
 
   server.begin();
 

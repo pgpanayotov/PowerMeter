@@ -7,7 +7,7 @@ const char TEMPLATE_HEADER[] =
   "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css\" integrity=\"sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX\" crossorigin=\"anonymous\">"
   "<script src=\"//code.jquery.com/jquery-1.11.3.min.js\"></script>"
   "<script src=\"//code.jquery.com/jquery-migrate-1.2.1.min.js\"></script>"
-  "<script src=\"trianglify.min.js\"></script>"
+  // "<script src=\"trianglify.min.js\"></script>"
   "</head>"
 	"<body id=\"homepage\">"
   "<div class=\"container\">"
@@ -76,7 +76,16 @@ const char TEMPLATE_HEADER[] =
   "<tr><td><i class=\"glyphicon glyphicon-flash\"></i></td><td><b>Energy: </b></td><td>"
   //getEnergy() 
   "%s"
-  "W"
+  "KWh"
+  "</td></tr>"
+  "<tr><td><i class=\"glyphicon glyphicon-music\"></i></td><td><b>Frequency: </b></td><td>"
+  // getFrequency()
+  "%s"
+  "hz"
+  "</td></tr>"
+  "<tr><td><i class=\"glyphicon glyphicon-scale\"></i></td><td><b>Power Factor: </b></td><td>"
+  // getPf()
+  "%s"
   "</td></tr>"
   "</tbody></table>"
   "</div>"

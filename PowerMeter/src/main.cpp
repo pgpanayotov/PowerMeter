@@ -18,7 +18,8 @@
 // PZEM004T Configuration.
 // Change the pins if using something other than the Wemos D1 mini and D5/D6 for UART communication.
 #define         PZEM_TIMEOUT  3500
-PZEM004Tv30     pzem( D6, D5);  // RX,TX
+SoftwareSerial pzemSoftwareSerial(D6, D5);
+PZEM004Tv30     pzem(pzemSoftwareSerial);  // RX,TX
 unsigned int    pzemAddress = 0x42;
 //IPAddress       ip( 192,168,1,1 );
 
@@ -129,7 +130,7 @@ void MQTT_Connect() {
     MQTT_client.onMessage( MQTT_callback );
     MQTT_client.setOptions( 120, true, 120 );
 
-    while (! MQTT_client.connect( MQTT_ClientID, MQTT_UserID, MQTT_Password ) ) {
+    while (! MQTT_client.connect( MQTT_ClientID ) ) {
         Log.E("MQTT Connection failed.");
         delay(1000);
     }
@@ -310,7 +311,7 @@ void PWRMeter_Connect() {
     
     Log.I("Connecting to PZEM004T V30...");
     appData.setPZEMState(PZEM_CONNECTING);
-    pzem.resetEnergy();
+    //pzem.resetEnergy();
     //pzem.setReadTimeout( PZEM_TIMEOUT);
 
     //while ( ((pzemOK=pzem.setAddress(ip)) == false) && ( tries < 10 ) ) {
@@ -392,6 +393,8 @@ void PWRMeter_getData() {
         appData.setCurrent( i );
         appData.setPower( p ); 
         appData.setEnergy( e );
+        appData.setPf(pf);
+        appData.setFrequency(freq);
         appData.setSamplesOK();
 
         pzemDataOK++;
