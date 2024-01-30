@@ -123,3 +123,13 @@ String AppData::getLogServerIPInfo() {
 String AppData::getHeap() {
     return String(ESP.getFreeHeap());
 }
+
+void AppData::triggerReset() {
+    if(resetCallback) {
+        resetCallback();
+    }
+}
+
+void AppData::setResetCallback(std::function<void()> callback) {
+    resetCallback = callback;
+}

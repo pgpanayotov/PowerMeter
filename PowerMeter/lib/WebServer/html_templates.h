@@ -7,6 +7,12 @@ const char TEMPLATE_HEADER[] =
   "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css\" integrity=\"sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX\" crossorigin=\"anonymous\">"
   "<script src=\"//code.jquery.com/jquery-1.11.3.min.js\"></script>"
   "<script src=\"//code.jquery.com/jquery-migrate-1.2.1.min.js\"></script>"
+  "<script>"
+  "function ResetEnergy () {"
+  "var xhttp = new XMLHttpRequest();"
+  "xhttp.open(\"GET\", \"/resetEnergy\", true);"
+  "xhttp.send();}"
+  "</script>"
   // "<script src=\"trianglify.min.js\"></script>"
   "</head>"
 	"<body id=\"homepage\">"
@@ -77,6 +83,10 @@ const char TEMPLATE_HEADER[] =
   //getEnergy() 
   "%s"
   "KWh"
+  "</td></tr>"
+  "<tr><td><i class=\"glyphicon glyphicon-refresh\"></i></td><td><b>Reset Energy: </b></td><td>"
+  //reset energy button
+  "<button type=\"button\" onclick=\"ResetEnergy();\">Reset</button>"
   "</td></tr>"
   "<tr><td><i class=\"glyphicon glyphicon-music\"></i></td><td><b>Frequency: </b></td><td>"
   // getFrequency()

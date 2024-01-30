@@ -25,6 +25,8 @@ private:
 
     uint8_t    m_PZEMState = 0;    // 0 - Not Connected, 1 - Connecting, 2 - Connected.
 
+    std::function<void()> resetCallback;
+
 public:
 
     void setFWVersion( String);
@@ -38,7 +40,8 @@ public:
     void setPf( float );
     void setSamplesOK();
     void setSamplesNOK();
-
+    void triggerReset();
+    void setResetCallback(std::function<void()> callback);
     void setPZEMState( uint8_t );
     String getPZEMState();
 

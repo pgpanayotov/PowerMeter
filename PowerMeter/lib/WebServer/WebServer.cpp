@@ -43,7 +43,7 @@ void Web_RootPage( AsyncWebServerRequest *request )
                                       appData.getSamplesNOK().c_str(), \
                                       appData.getPZEMState().c_str() );
 
-  response->print( TEMPLATE_FOOTER);
+  // response->print( TEMPLATE_FOOTER);
 
   request->send(response);
 }
@@ -61,6 +61,10 @@ WebServer::WebServer()
 void WebServer::setup()
 {
     server.on( "/", HTTP_GET, Web_RootPage );
+
+    server.on("/resetEnergy", HTTP_GET, [](AsyncWebServerRequest *request){
+      appData.triggerReset();
+    });
 
     server.onNotFound( Web_PageNotFound );
 

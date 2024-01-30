@@ -433,6 +433,14 @@ void printTime() {
     timeProvider.logTime();
 }
 
+// Resets the energy counter
+void resetEnergy() {
+    Log.I("Reset energy counter invoked.");
+    if(appData.getPZEMState() == "Connected" && pzem.resetEnergy()) {
+        Log.I("Reset energy counter succeeded.");
+    }
+}
+
 /*
  * MAIN CODE
  * 
@@ -444,6 +452,7 @@ void setup() {
 
     appData.setFWVersion(FW_Version);
     appData.setLogServerIPInfo(udpServerAddress.toString());
+    appData.setResetCallback(resetEnergy);
 
     Serial.begin(115200);
     delay (200);                           // Wait for the serial port to settle.
